@@ -1,0 +1,239 @@
+<html>
+
+<head>
+  <title>Encryption & Decrytion App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    h3 {
+      text-align: center;
+    }
+
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #3e8e41;
+    }
+
+    button:active {
+      background-color: #3e8e41;
+      box-shadow: 0 2px #666;
+      transform: translateY(2px);
+    }
+
+    #encrypted-text,
+    #decrypted-text {
+      background-color: #f2f2f2;
+      padding: 20px;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+  </style>
+
+<script type="text/python"></script>
+
+</head>
+
+<body>
+
+  <h1>Caesar Shift Cipher App</h1>
+  <form>
+    <input type="text" id="user-input" placeholder="Type your message">
+    <button type="submit">Show me the ways😎</button>
+  </form>
+
+  <div id="result encrypted-text">
+    <body>
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          background-color: #f2f2f2;
+          padding: 20px;
+        }
+    
+        form {
+          max-width: 500px;
+          margin: 0 auto;
+          background-color: #fff;
+          padding: 20px;
+          border-radius: 5px;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+    
+        input[type="text"] {
+          width: 100%;
+          padding: 10px;
+          margin-bottom: 20px;
+          border-radius: 3px;
+          border: 1px solid #ccc;
+        }
+
+        output[type="text"] {
+          width: 100%;
+          padding: 10px;
+          margin-bottom: 20px;
+          border-radius: 3px;
+          border: 1px solid #ccc;
+        }
+      </style>
+      <h3>Shift ➡️ 1 (a=b, b=c ect.)</h3>
+          <output type="text" id="encrypted" placeholder="">
+            <script>  
+              const encryptForm = document.querySelector('#encrypt-form')
+              const form = document.querySelector('form')
+              const input = document.getElementById('user-input')
+              const encryptedOutput = document.getElementById('encrypted')
+              form.addEventListener('click', e => {
+                e.preventDefault()
+                const inputText = input.value
+                const encrypted = caesar_encrypt(inputText)
+                encryptedOutput.value = encrypted
+              
+              })
+              
+              </script>            
+            <script>
+              function caesar_encrypt(message, key = 1) {
+                let encrypted = "";
+                for (let char of message) {
+                  if (/[a-zA-Z]/.test(char)) {
+                    let char_code = char.charCodeAt(0);
+                    char_code += key;
+                    if (/[A-Z]/.test(char)) {
+                      if (char_code > 'Z'.charCodeAt(0)) {
+                        char_code -= 26;
+                      } else if (char_code < 'A'.charCodeAt(0)) {
+                        char_code += 26;
+                      }
+                    } else if (/[a-z]/.test(char)) {
+                      if (char_code > 'z'.charCodeAt(0)) {
+                        char_code -= 26;
+                      } else if (char_code < 'a'.charCodeAt(0)) {
+                        char_code += 26;
+                      }
+                    }
+                    encrypted += String.fromCharCode(char_code);
+                  } else {
+                    encrypted += char;
+                  }
+                }
+                return encrypted;
+              }
+            </script>
+          </output>
+        </body>
+    </body>
+  </div>
+
+  <h3>Shift ⬅️ 1 (a=z, b=a ect.)</h3>
+<div id="result decrypted-text">
+
+  <body>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        padding: 20px;
+      }
+
+      form {
+        max-width: 500px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+      }
+
+      output[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+      }
+    </style>
+    <output type="text" id="decrypted" placehorder="">
+      <script>
+        const decryptBtn = document.querySelector('#decrypt-btn')
+        const decryptedText = document.getElementById('user-input').value
+        const decryptedOutput = document.getElementById('decrypted')
+        form.addEventListener('click', e => {
+        e.preventDefault()
+        const inputText = input.value
+        const decrypted = caesar_decrypt(inputText)
+        decryptedOutput.value = decrypted      
+        })
+              
+      </script>
+      <script>
+        function caesar_decrypt(encrypted_message, key = 1) {
+          let decrypted = "";
+          for (let char of encrypted_message) {
+            if (/[a-zA-Z]/.test(char)) {
+              let char_code = char.charCodeAt(0);
+              char_code -= key;
+              if (/[A-Z]/.test(char)) {
+                if (char_code < 'A'.charCodeAt(0)) {
+                  char_code += 26;
+                }
+              } else if (/[a-z]/.test(char)) {
+                if (char_code < 'a'.charCodeAt(0)) {
+                  char_code += 26;
+                }
+              }
+              decrypted += String.fromCharCode(char_code);
+            } else {
+              decrypted += char;
+            }
+          }
+          return decrypted;
+        }
+      </script>
+    </output>
+  </body>
+</div>
+</body>
+</html>
